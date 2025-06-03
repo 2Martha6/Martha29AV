@@ -6,6 +6,8 @@ using System.Text;
 using Domain.Entities;
 using Domain.DTO;
 using Majo29AV.Context;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Martha29AV.Controllers
 
@@ -27,8 +29,8 @@ namespace Martha29AV.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] UsuarioRequest request)
         {
-            var usuario = _context.Usuarios.FirstOrDefault(u =>
-                u.UserName == request.UserName && u.Password == request.Password);
+            var usuario = _context.Usuarios.Include(u => u.Roles)  
+                .FirstOrDefault(u =>u.UserName == request.UserName && u.Password == request.Password);
 
             if (usuario == null)
             {

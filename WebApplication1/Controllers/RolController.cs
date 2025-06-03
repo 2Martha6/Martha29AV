@@ -1,11 +1,13 @@
 ﻿using Domain.DTO;
 using Domain.Entities;
 using Majo29AV.Services.Iservices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Majo29AV.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("ROL/[controller]")]
     public class RolController : ControllerBase
